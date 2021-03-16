@@ -68,7 +68,7 @@ var summaryRanges = function(nums) {
     
     for(let i = 0; i < nums.length; i++){
         if(i == 0){
-            minRange = nums[i];            
+            minRange = nums[i];
         }else if(nums[i-1]+1 !== nums[i]){
             res.push(minRange === nums[i-1] ? `${minRange}` : `${minRange}->${nums[i-1]}`);
             minRange = nums[i];
