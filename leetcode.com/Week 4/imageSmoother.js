@@ -89,3 +89,30 @@ var imageSmoother = function(M) {
     }
     return img;
 };
+
+// Sol#2
+var imageSmoother = function(M) {
+    let rows = M.length;
+    let cols = M[0].length;
+    let img = Array.apply(null, Array(rows)).map(function (x) { return Array(cols).fill(0); })
+    
+    let isValid = (r,c) => r < rows && r >= 0 && c < cols && c >= 0;
+    
+    for(let r = 0; r < rows; r++){
+        for(let c = 0; c < cols; c++){
+            let sum = 0;
+            let count = 0;
+            
+            for(const x of [-1, 0, 1]){
+                for(const y of [-1, 0, 1]){
+                    if(isValid(r + x, c + y)){
+                        count++;
+                        img[r][c] += M[r + x][c + y];
+                    }
+                }
+            }
+            img[r][c] = Math.floor(img[r][c] / count);
+        }
+    }
+    return img;
+};
